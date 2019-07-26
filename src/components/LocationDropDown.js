@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 
 export default class LocationDropDown extends Component {
+
+    locationSelected(e) {
+        console.log(e.target);
+
+        let locationName = e.target.getAttribute('data-name');
+        console.log(locationName);
+    }
+
     render() {
         // return (
         //     <div>
@@ -20,13 +28,21 @@ export default class LocationDropDown extends Component {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false">
-                    จังหวัด
-              </a>
+                    {this.props.defaultLabel}
+                </a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     {
-                        locations.map((location, index)=>{
-                           return <a key={location.id} data-id={location.id} data-name={location.name} class="dropdown-item" href="#">{location.name}</a>
+                        locations.map((location, index) => {
+                            return (
+                                <div>
+                                    <a key={location.id} 
+                                    data-id={location.id} 
+                                    data-name={location.name} 
+                                    onClick={e=>this.locationSelected(e)}
+                                    class="dropdown-item" href="#">{location.name}</a>
+                                </div>
+                            )
                         })
                     }
                 </div>
