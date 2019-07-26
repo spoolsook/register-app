@@ -38,8 +38,8 @@ export default class LocationSelectForm extends Component {
         return (
             <div>
                  <LocationDropDown defaultLabel="จังหวัด" locations={this.provinces}/><br/>
-                 <LocationDropDown defaultLabel="อำเภอ" locations={this.provinces}/><br/>
-                 <LocationDropDown defaultLabel="ตำบล" locations={this.provinces}/>
+                 <LocationDropDown defaultLabel="เขต/อำเภอ" locations={this.provinces}/><br/>
+                 <LocationDropDown defaultLabel="แขวง/ตำบล" locations={this.provinces}/>
             </div>
         )
     }
