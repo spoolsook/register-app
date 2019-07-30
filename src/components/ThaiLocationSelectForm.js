@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import LocationDropDown from './LocationDropDown';
 
-export default class LocationSelectForm extends Component {
-
+export default class ThaiLocationSelectForm extends Component {
     state = {}
 
     provinces = [
@@ -36,25 +35,23 @@ export default class LocationSelectForm extends Component {
     ]
 
     selectedProvince = (provinceName) => {
-        console.log('เลือกจังหวัด: ' + provinceName);
+        console.log(`เลือกจังหวัด ${provinceName}`);
 
-        let chosenProvice = this.provinces = this.provinces.find(province => {
-            return province.name === provinceName;
+        let chosenProvince = this.provinces.find(province => {
+            return province.name === provinceName
         })
 
         this.setState({
-            selectedProvince:chosenProvice
-        })
+            selectedProvince: chosenProvince
+        });
     }
 
     selectedDistrict = (districtName) => {
-        console.log('เลือกเขต/อำเภอ ${districtName}');
+        console.log(`เลือกเขต/อำเภอ ${districtName}`);
 
         let chosenDistrict = this.state.selectedProvince.districts.find(district => {
             return district.name === districtName
         })
-
-        this.props.locationData.district = chosenDistrict.name;
 
         this.setState({
             selectedDistrict: chosenDistrict
@@ -66,9 +63,8 @@ export default class LocationSelectForm extends Component {
         let districtDropDown;
         let khwangDropDown;
 
-        if(this.state.selectedProvince){
+        if(this.state.selectedProvince) {
             let districts = this.state.selectedProvince.districts;
-            console.log(districts);
             districtDropDown = <LocationDropDown defaultLabel="เขต/อำเภอ" locations={districts} selectedCallback={this.selectedDistrict}/>
         }
 
@@ -79,7 +75,7 @@ export default class LocationSelectForm extends Component {
 
         return (
             <div>
-                <LocationDropDown defaultLabel="จังหวัด" selectedCallback={this.selectedProvince} locations={this.provinces} /><br />
+                <LocationDropDown defaultLabel="จังหวัด" locations={this.provinces} selectedCallback={this.selectedProvince} />
                 {districtDropDown}
                 {khwangDropDown}
             </div>

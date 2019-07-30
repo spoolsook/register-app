@@ -7,14 +7,18 @@ export default class LocationDropDown extends Component {
     }
 
     locationSelected(e) {
-        console.log(e.target);
+        // console.log(e.target);
 
         let locationName = e.target.getAttribute('data-name');
-        console.log(locationName);
+        console.log('locationSelected: '+locationName);
 
         this.setState({
             label : locationName
         })
+
+        if(this.props.selectedCallback){
+            this.props.selectedCallback(locationName);            
+        }
     }
 
     render() {
@@ -25,6 +29,7 @@ export default class LocationDropDown extends Component {
         // )
 
         let locations = this.props.locations;
+        console.log('let locations: '+locations);
 
         return (
             <div class="dropdown">
